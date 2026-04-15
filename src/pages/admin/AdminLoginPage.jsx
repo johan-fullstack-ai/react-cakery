@@ -9,14 +9,12 @@ export default function AdminLoginPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isAdmin) {
-      navigate("/admin/dashboard", { replace: true });
-    }
+    if (!isAdmin) return;
+    navigate("/admin/dashboard", { replace: true });
   }, [isAdmin, navigate]);
 
-  if (isAdmin) {
-    return null; // prevent showing the login form while redirecting
-  }  
+  if (isAdmin) return null;
+
 
   function handleSubmit(event) {
     event.preventDefault();
