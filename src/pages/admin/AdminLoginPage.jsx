@@ -8,10 +8,15 @@ export default function AdminLoginPage() {
   const { login, isAdmin } = useAuth();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (isAdmin) {
+      navigate("/admin/dashboard", { replace: true });
+    }
+  }, [isAdmin, navigate]);
+
   if (isAdmin) {
-    navigate("/admin/dashboard", { replace: true });
-    return null;
-  }
+    return null; // prevent showing the login form while redirecting
+  }  
 
   function handleSubmit(event) {
     event.preventDefault();
