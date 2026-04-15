@@ -108,9 +108,7 @@ export default function AdminProductsPage() {
               <img
                 className="productImage"
                 src={
-                  product.image.startsWith("/react-cakery/src/") ||
-                  product.image.startsWith("/react-cakery/assets/") ||
-                  product.image.startsWith("http")
+                  product.image.includes("assets") || product.image.startsWith("http")
                     ? product.image
                     : import.meta.env.BASE_URL + product.image
                 }

@@ -10,11 +10,14 @@ export default function AdminLoginPage() {
 
   useEffect(() => {
     if (!isAdmin) return;
-    navigate("/admin/dashboard", { replace: true });
+    Promise.resolve().then(() => {
+      navigate("/admin/dashboard", { replace: true });
+    });
   }, [isAdmin, navigate]);
 
-  if (isAdmin) return null;
-
+  if (isAdmin) {
+    return <div style={{ textAlign: "center", padding: "2rem" }}>Redirecting…</div>;
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
