@@ -107,7 +107,12 @@ export default function AdminProductsPage() {
             <div className="productCard" key={product.id}>
               <img
                 className="productImage"
-                src={import.meta.env.BASE_URL + product.image}
+                src={
+                  product.image.startsWith("/react-cakery/src/assets/") ||
+                  product.image.startsWith("http")
+                    ? product.image
+                    : import.meta.env.BASE_URL + product.image
+                }
                 alt={product.name}
                 loading="lazy"
                 width="576"
