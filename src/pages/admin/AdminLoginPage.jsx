@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -9,15 +9,14 @@ export default function AdminLoginPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isAdmin) return;
-    Promise.resolve().then(() => {
-      navigate("/admin/dashboard", { replace: true });
-    });
+    if (isAdmin) {
+      Promise.resolve().then(() => {
+        navigate("/admin/dashboard", { replace: true });
+      });
+    }
   }, [isAdmin, navigate]);
 
-  if (isAdmin) {
-    return <div style={{ textAlign: "center", padding: "2rem" }}>Redirecting…</div>;
-  }
+  if (isAdmin) return null;
 
   function handleSubmit(event) {
     event.preventDefault();
