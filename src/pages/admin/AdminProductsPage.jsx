@@ -107,7 +107,7 @@ export default function AdminProductsPage() {
             <div className="productCard" key={product.id}>
               <img
                 className="productImage"
-                src={product.image}
+                src={import.meta.env.BASE_URL + product.image}
                 alt={product.name}
                 loading="lazy"
                 width="576"
